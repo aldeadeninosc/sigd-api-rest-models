@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from models import predict_labels
+from models import identificar_documento_y_carpeta_mejorado
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def predict():
         return jsonify({"error": "Query parameter is missing"}), 400
     
     # Llamar a la función para predecir las etiquetas utilizando los modelos
-    carpeta, subcarpeta, documento = predict_labels(query)
+    carpeta, subcarpeta, documento = identificar_documento_y_carpeta_mejorado(query)
     
     # Retornar el resultado en formato JSON
     return jsonify({"carpeta": carpeta, "subcarpeta": subcarpeta, "documento": documento})
